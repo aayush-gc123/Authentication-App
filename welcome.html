@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wecome Page</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+</head>
+
+<body>
+    <center>
+        <div style="margin:100px">
+            <span class="message">Hello, < email-id></span>
+            <div class="success"><span>Welcome to auth starter, You are successfully loged in!!!</span></div><br />
+            <button id="log">LogOut</button>
+        </div>
+    </center>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBposUdTP0YPE8fJzuJveFpxKSxZSIUr8c",
+            authDomain: "login1-4c69e.firebaseapp.com",
+            projectId: "login1-4c69e",
+            storageBucket: "login1-4c69e.appspot.com",
+            messagingSenderId: "74243084907",
+            appId: "1:74243084907:web:bdc8eca96a137173e3972e",
+            measurementId: "G-50VK18TENP"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const database = getDatabase();
+
+        const Logout = document.querySelector("#log").addEventListener("click", () => {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                alert("Logout..")
+                location.replace("index.html")
+            }).catch((error) => {
+                // An error happened.
+                alert(error)
+            });
+
+        })
+        console.log(Logout)
+ onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    location.replace("index.html")
+    const uid = user.uid;
+    
+    // ...
+  } else{
+    alert('hello welcome ',email)
+  }
+});
+        // inputs
+
+    </script>
+</body>
